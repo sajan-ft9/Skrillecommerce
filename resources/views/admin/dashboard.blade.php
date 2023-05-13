@@ -37,7 +37,7 @@
                 <div class=" text-center rounded p-2 bg-danger">
                     <a href="/admin/lowstocks" class="text-decoration-none text-white">
                         <h2>
-                            <i class="bi bi-bag-plus"></i>
+                            <i class="bi bi-exclamation-diamond"></i>
                             <span>Low Stocks</span>
                         </h2>
                         <h3>{{ $low_stocks }}</h3>

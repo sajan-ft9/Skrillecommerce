@@ -35,6 +35,7 @@
             <div class="col-md-6">
                 <div class="card-body">
                     <h5 class="card-title text-info">{{ $product->name }}</h5>
+                    <p class="card-title">Category: {{ $product->category }}</p>
                     <p class="card-text"><strong class="text-muted">Rs. {{ $product->price }}</strong></p>
                     <p class="card-text">In Stock: {{ $product->quantity }}</p>
 

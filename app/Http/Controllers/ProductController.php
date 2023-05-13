@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function welcome(){
+        $products = Product::all();
+        return view('welcome', compact('products'));
+    }
+
     public function all(){
         $products = Product::all();
         return view('admin.products.products', compact('products'));
@@ -23,6 +28,9 @@ class ProductController extends Controller
 
     public function details(Product $product){
         return view('admin/products/details', compact('product'));
+    }
+    public function prod_details(Product $product){
+        return view('details', compact('product'));
     }
 
     public function store(Request $request){

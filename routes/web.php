@@ -19,9 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ProductController::class, 'welcome']);
+Route::get('/product/{product}', [ProductController::class, 'prod_details']);
 
 Route::group(['middleware' => ['guest']], function(){
     Route::get('/login',[AuthController::class, 'showLoginForm'])->name('login');
