@@ -8,6 +8,7 @@
 </div>
 
 <section>
+    <x-alertmsg />
     <div class="card my-3" style="max-width: 100%;">
         <div class="row no-gutters">
             <div class="col-md-6">
@@ -37,9 +38,11 @@
                 @endif
                 <div class="card-footer">
                     {{-- cart --}}
-                    <form style="display: inline-flex" class="mx-2" action="" method="post">
+                    <form style="display: inline-flex" class="mx-2" action="/cart" method="post">
                         @csrf
-                        <button class="btn btn-success" type="submit">
+                        <input type="hidden" name="product_id" value="{{ $product->id }}" required>
+                        <input type="number" name="quantity" min="1" class="form-control" required placeholder="Desired Quantity">
+                        <button class="btn btn-success mx-2" type="submit">
                             <i class="bi bi-cart"></i>
                         </button>
                     </form>

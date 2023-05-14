@@ -42,7 +42,7 @@ class WishlistController extends Controller
                 return redirect('/wishlist')->with('success', 'Wishlist added successfully');
             }    
         }else{
-            return redirect('/wishlist')->with('success', 'Product already present');
+            return redirect('/product/'.$request->product_id)->with('alert', 'Product already present in wishlist');
         }
         
         return redirect('/wishlist')->with('alert', 'User id not valid');

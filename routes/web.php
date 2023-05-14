@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
@@ -63,4 +64,11 @@ Route::group(['middleware' => ['auth', 'user']], function () {
 
     Route::get('/wishlist', [WishlistController::class, 'show']);
     Route::post('/wishlist', [WishlistController::class, 'store']);
+    
+    // Cart Routes
+    Route::delete('/cart/{cart}', [CartController::class, 'destroy']);
+
+    Route::get('/cart', [CartController::class, 'show']);
+    Route::post('/cart', [CartController::class, 'store']);
+
 });

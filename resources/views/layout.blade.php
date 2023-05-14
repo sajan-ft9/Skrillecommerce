@@ -41,9 +41,9 @@
 
                     @else
                     @if (auth()->user()->role == 'user')
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="/dashboard">Dashboard</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="/wishlist">WishList</a>
                     </li>
