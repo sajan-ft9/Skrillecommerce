@@ -44,10 +44,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/dashboard">Dashboard</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/wishlist">WishList</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            {{ $user->name }}
+                            {{ auth()->user()->name }}
                         </a>
                         <ul class="dropdown-menu">
                             {{-- <li><a class="dropdown-item" href="#">Action</a></li>
@@ -108,8 +111,8 @@
                     </li>
                 </ul>
                 --}}
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2 mx-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" action="/" role="search">
+                    <input class="form-control me-2 mx-2" name="search" type="search" placeholder="Search" required aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>

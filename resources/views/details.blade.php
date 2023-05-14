@@ -23,20 +23,39 @@
                     <strong class="card-text">Description</strong>
                     <p class="card-text">{{ $product->description }}</p>
                 </div>
+                @guest
+                @else
+                @if (auth()->user()->role == 'user')
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <div class="card-footer">
                     {{-- cart --}}
                     <form style="display: inline-flex" class="mx-2" action="" method="post">
+                        @csrf
                         <button class="btn btn-success" type="submit">
                             <i class="bi bi-cart"></i>
                         </button>
                     </form>
                     {{-- wishlist --}}
-                    <form style="display: inline-flex" action="" method="post">
+                    <form style="display: inline-flex" action="/wishlist" method="post">
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}" required>
+                        <input type="hidden" name="product_id" value="{{ $product->id }}" required>
                         <button class="btn btn-danger" type="submit">
                             <i class="bi bi-bag-heart-fill"></i>
                         </button>
                     </form>
                 </div>
+                @endif
+                @endguest
+
             </div>
         </div>
     </div>

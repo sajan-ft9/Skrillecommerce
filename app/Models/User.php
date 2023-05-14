@@ -55,4 +55,8 @@ class User extends Authenticatable
         return self::nonAdmins();
     }
 
+    public function wishlists(){
+        return $this->hasMany(WishList::class);
+    }
+
 }
