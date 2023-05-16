@@ -31,12 +31,12 @@
 
                 <div class="card-footer">
                     {{-- cart --}}
-                    <form style="display: inline-flex" class="mx-2" action="" method="post">
+                    {{-- <form style="display: inline-flex" class="mx-2" action="" method="post">
                         @csrf
                         <button class="btn btn-success" type="submit">
                             <i class="bi bi-cart"></i>
                         </button>
-                    </form>
+                    </form> --}}
                     {{-- wishlist delete --}}
                     <form style="display: inline-flex" action="/wishdelete/{{ $item->wish_id }}" method="POST">
                         @csrf

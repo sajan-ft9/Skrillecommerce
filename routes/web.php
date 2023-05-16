@@ -66,9 +66,13 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::post('/wishlist', [WishlistController::class, 'store']);
     
     // Cart Routes
-    Route::delete('/cart/{cart}', [CartController::class, 'destroy']);
+    Route::get('/deletecart/{cart}',[CartController::class, 'destroy']);
 
     Route::get('/cart', [CartController::class, 'show']);
     Route::post('/cart', [CartController::class, 'store']);
+    Route::patch('/cartquantityupdate/{cart}', [CartController::class, 'updatequantity']);
+
+
+    Route::post('/checkout', [CartController::class, 'checkout']);
 
 });

@@ -14,16 +14,18 @@ class CartController extends Controller
         $user = auth()->user();
         $carts = $user->carts;
         $cartproducts = array();
+        $total_amt = 0;
 
         foreach ($carts as $item) {
-            $cartproduct = Product::select('id','name', 'image')->find($item->product_id);
+            $cartproduct = Product::select('id','name', 'image', 'quantity')->find($item->product_id);
             $cartproduct->cart_id = $item->id;
-            $cartproduct->quantity = $item->quantity;
+            $cartproduct->cart_quantity = $item->quantity;
             $cartproduct->amount = $item->amount;
+            $total_amt += $cartproduct->amount;
             $cartproducts[] = $cartproduct;
         }
         // dd($cartproducts);
-        return view('cart.show', compact('cartproducts'));
+        return view('cart.show', compact('cartproducts', 'total_amt'));
     }
 
     public function store(Request $request)
@@ -75,6 +77,41 @@ class CartController extends Controller
     public function destroy(Cart $cart)
     {
         $cart->delete();
-        return redirect('/wishlist')->with('alert', 'Deleted successfully');
+        return redirect('/cart')->with('alert', 'Deleted successfully');
+    }
+    
+    public function checkout(Request $request)
+    {
+        dd($request);
+        // return redirect('/wishlist')->with('alert', 'Deleted successfully');
+    }
+
+    public function updatequantity(Request $request, Cart $cart)
+    {
+        $stock_count = $this->getStockCount($cart->product_id);
+        $formFields = $request->validate([
+            'cart_quantity'=> ['required', 'numeric', 'min:1']
+        ]);
+
+        $product_unit_price = Product::where('id', $cart->product_id)
+        ->value('price');
+
+        $amount =  $product_unit_price * $request->cart_quantity;
+        $formFields['amount'] = $amount;
+
+        if($request->cart_quantity > $stock_count){
+            return redirect()->back()->withErrors('Quantity must be less or equal to stock');
+        }else{
+            $cart->quantity = $formFields['cart_quantity'];
+            $cart->amount = $amount;
+            $cart->save();
+            return redirect('/cart')->with('success', 'Quantity in cart updated successfully');
+        }
+    }
+
+    public function getStockCount($product_id){
+        $stock = Product::select('quantity')->find($product_id);
+        return ($stock->quantity);
+
     }
 }
