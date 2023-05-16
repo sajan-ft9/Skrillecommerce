@@ -46,6 +46,9 @@
                         <a class="nav-link" href="/cart">Cart</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/orders">Orders</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/wishlist">WishList</a>
                     </li>
                     <li class="nav-item dropdown">

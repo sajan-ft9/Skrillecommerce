@@ -75,9 +75,11 @@
   <input type="text" required name="Address" placeholder="Address" /> --}}
   <form action="/checkout" style="display: inline-flex" method="post">
     @csrf
+    <input class="form-control mx-2" type="tel" name="phone" placeholder="Phone" required>
+    <input class="form-control mx-2" type="text" name="address" placeholder="Shipping address" required><br>
     <button class="btn btn-info" type="submit">Checkout</button>
   </form>
-  <a href="/" style="display: inline-flex" class="btn btn-secondary">Find more</a>
+  {{-- <a href="/" style="display: inline-flex" class="btn btn-secondary">Find more</a> --}}
 
 
   @else

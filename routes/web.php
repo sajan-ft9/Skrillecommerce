@@ -74,5 +74,10 @@ Route::group(['middleware' => ['auth', 'user']], function () {
 
 
     Route::post('/checkout', [CartController::class, 'checkout']);
+    Route::get('/success', [CartController::class, 'success'])->name('checkout.success');
+    Route::get('/cancel', [CartController::class, 'cancel'])->name('checkout.cancel');
 
+    // Orders
+    Route::get('/orders', [CartController::class, 'orders']);
+    
 });
