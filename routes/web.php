@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     // Admin Products Route
     Route::get('/admin/products', [ProductController::class, 'all']);
     Route::get('/admin/lowstocks', [ProductController::class, 'lowstocks']);
+    Route::get('/admin/orders', [AdminController::class, 'orders']);
+    Route::patch('/admin/deliver/{order}', [AdminController::class, 'deliver']);
     Route::get('/admin/product/{product}', [ProductController::class, 'details']);
     Route::get('/admin/newproduct', [ProductController::class, 'createForm']);
     Route::post('/admin/newproduct', [ProductController::class, 'store']);

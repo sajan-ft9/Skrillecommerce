@@ -2,32 +2,34 @@
 
 @section('content')
 <section>
-    <h1>
-        {{ $product->name }}
-        <span style="float:right">
-            <a class="btn btn-warning mt-2" href="/admin/edit/{{ $product->id }}">Update</a>
-            <form style="display: inline-flex" action="/admin/delete/{{ $product->id }}" method="POST">
-                @csrf
-                @method('delete')
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
+    <div style="display: block">
+        <h1>
+            {{ $product->name }}
+            <span style="float:right">
+                <a class="btn btn-warning mt-2" href="/admin/edit/{{ $product->id }}">Update</a>
+                <form style="display: inline-flex" action="/admin/delete/{{ $product->id }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
 
-            <form style="display: inline-flex" action="/admin/stock/{{ $product->id }}" method="POST">
-                @csrf
-                @method('patch')
+                <form style="display: inline-flex" action="/admin/stock/{{ $product->id }}" method="POST">
+                    @csrf
+                    @method('patch')
 
-                <input type="number" min="1" class="form-control" required name="quantity" placeholder="Add Stock">
+                    <input type="number" min="1" class="form-control" required name="quantity" placeholder="Add Stock">
 
-            </form>
-        </span>
-    </h1>
+                </form>
+            </span>
+        </h1>
+    </div>
     @if ($errors->any())
     @foreach ($errors->all() as $error)
     <small class="text-danger">{{ $error }}</small>
     @endforeach
     @endif
     <x-alertmsg />
-    <div class="card my-3" style="max-width: 100%;">
+    <div class="card my-3 mt-5" style="max-width: 100%;display:block">
         <div class="row no-gutters">
             <div class="col-md-6">
                 <img src="{{ $product->image }}" class="card-img" alt="...">

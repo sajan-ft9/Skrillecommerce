@@ -55,7 +55,7 @@
                     <a href="/admin/products" class="nav-link border-bottom">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin/dashboard" class="nav-link border-bottom">Dashboard</a>
+                    <a href="/admin/orders" class="nav-link border-bottom">Orders</a>
                 </li>
                 <li class="nav-item">
                     <form class="dropdown-item" action="/logout" method="POST">

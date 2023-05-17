@@ -32,6 +32,8 @@ class ProductController extends Controller
         return view('admin.products.lowstocks', compact('low_stocks'));
     }
 
+
+
     public function createForm()
     {
         return view('admin.products.create');
